@@ -2,6 +2,7 @@ package com.hr.api.repository;
 
 
 
+
 import com.hr.api.model.Job;
 
 import java.util.List;
@@ -16,5 +17,7 @@ public interface JobsRepository extends PagingAndSortingRepository <Job, Long> {
 	
 	
 	List<Job> findByLastName(@Param("name") String name);
+	
+	List<Job>findAll();
 
 }

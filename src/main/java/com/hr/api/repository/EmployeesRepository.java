@@ -13,4 +13,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface EmployeesRepository extends PagingAndSortingRepository <Employee, Long> {
 	
 	List<Employee> findByLastName(@Param("name") String name);
+	
+	List<Employee>findAll();
 }

@@ -22,7 +22,7 @@ import com.hr.api.repository.DepartmentsRepository;
 @RequestMapping("departments")
 public class DepartmentsResource {
 
-	@Autowired
+	@Autowired(required=true)
 	private DepartmentsRepository repository;
 
 
@@ -31,6 +31,8 @@ public class DepartmentsResource {
 	public String save(@RequestBody Department departments) {
     	repository.save(departments);
     	return "Saved- " + departments.getDepartmentId();
+    	
+    	
 	}
 
 	@GetMapping(value = "/{id}", produces = "application/json")

@@ -27,7 +27,7 @@ public class JobsResource {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public String save(@RequestBody Job jobs) {
     	repository.save(jobs);
-    	return "Saved- " + jobs.getMaxSalary().shortValue();
+    	return "Saved- " + jobs;
 	}
 
 	@GetMapping(value = "/{id}", produces = "application/json")

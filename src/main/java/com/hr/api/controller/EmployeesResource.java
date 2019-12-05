@@ -31,7 +31,7 @@ public class EmployeesResource {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public String save(@RequestBody Employee employee) {
     	repository.save(employee);
-    	return "Saved- " + employee.getCommissionPct().shortValue();
+    	return "Saved- " + employee;
 	}
 
 	@GetMapping(value = "/{id}", produces = "application/json")

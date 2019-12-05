@@ -1,7 +1,7 @@
 package com.hr.api.config;
 
 
-import org.springframework.beans.factory.annotation.Value; 
+ 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -19,41 +19,18 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @Import(SpringDataRestConfiguration.class)
 public class SwaggerConfig {
+		@Bean
+		public Docket api() {
+			return new Docket(DocumentationType.SWAGGER_2).select()
+					.apis(RequestHandlerSelectors.basePackage("com.hr.api*")).paths(PathSelectors.any()).build()
+					.apiInfo(apiInfo());
+		}
 
-    private static final String PATH_MAPPING = "/";
+		private ApiInfo apiInfo() {
+			return new ApiInfoBuilder().title("Swagger API")
+					.description("Documentação da API de acesso aos endpoints com Swagger").version("1.0").build();
+		}
 
-    private static final String PACKAGE_BASE = "com.hr.api.*";
-
-    @Value("${info.app.version}")
-    private String projectVersion;
-
-    @Value("${info.app.name}")
-    private String projectName;
-
-    @Value("${info.app.description}")
-    private String projectDescription;
-
-    @Value("${spring.profiles.active}")
-    private String activeProfile;
-
-    @Bean
-    Docket rsApi() {
-        return new Docket(DocumentationType.SWAGGER_12)
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build()
-                .pathMapping(PATH_MAPPING)
-                .useDefaultResponseMessages(false);
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title(projectName)
-                .description(projectDescription + " - Profile: " + activeProfile)
-                .version(projectVersion)
-                .build();
-    }
-
-}
+	}
+	
+	
